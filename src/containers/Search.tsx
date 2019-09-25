@@ -39,7 +39,7 @@ class Search extends React.Component < SearchProps, SearchState > {
       <div>
         <input
           onChange={this.handleTextChange}
-          placeholder={"Search Transactions..."}
+          placeholder={"Search Blocks..."}
           value={this.state.todoInput}
         />
         <button onClick={this.handleSubmit}>Search</button>
