@@ -2,9 +2,9 @@ import { action } from "typesafe-actions";
 
 // use typescript enum rather than action constants
 export enum actionTypes {
-  ADD = "ADD",
+  FIND = "FIND",
 }
 
-export const todoActions = {
-  add: (item: string) => action(actionTypes.ADD, item),
+export const findBlocks = {
+  findBlocks: (param: string) => action(actionTypes.FIND, param),
 };

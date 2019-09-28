@@ -9,38 +9,26 @@ interface SearchState {
 }
 
 interface SearchProps {
-  todoList: string[];
-  addToDo: (item: string) => object;
+  list: string[];
+  findBlocks: (block: string) => object;
 }
 
 class Search extends React.Component < SearchProps, SearchState > {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      todoInput: ""
-    };
-  }
 
   handleTextChange = (e: any) => {
-    this.setState({
-      todoInput: e.target.value
-    });
+    this.props.findBlocks(e.target.value);
   };
 
   handleSubmit = () => {
-    this.props.addToDo(this.state.todoInput);
-    this.setState({
-      todoInput: ""
-    });
+    // this.props.findBlocks();
   };
 
   render() {
     return (
-      <div>
+      <div className="search-box">
         <input
           onChange={this.handleTextChange}
           placeholder={"Search Blocks..."}
-          value={this.state.todoInput}
         />
         <button onClick={this.handleSubmit}>Search</button>
       </div>
@@ -50,12 +38,12 @@ class Search extends React.Component < SearchProps, SearchState > {
 
 const MapStateToProps = (store: MyTypes.ReducerState) => {
   return {
-    todoList: store.todo.list
+    list: store.todo.list
   };
 };
 
 const MapDispatchToProps = (dispatch: Dispatch<MyTypes.RootAction>) => ({
-  addToDo: (item: string) => dispatch({ type: actionTypes.ADD, payload: item }),
+  findBlocks: (param: string) => dispatch({ type: actionTypes.FIND, payload: param }),
 });
 
 export default connect(

@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface TodoItemProps {
-  item: string;
+  param: string;
   idx: number;
   handleSearch: (idx: number) => void;
 }
