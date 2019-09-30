@@ -1,51 +1,49 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import {actionCreator } from '../modules';
+import { actionCreator } from '../modules';
 import { ThunkDispatch } from 'redux-thunk';
 import { RootState, RootActions } from '../modules/Types';
 
 type OutterProps = {
-    label: string;
+  label: string;
 };
 
 type StateProps = {
-    disabled: boolean;
+  disabled: boolean;
 };
 
 type DispatchProps = {
-    onClick: () => void;
+  onClick: () => void;
 };
 
 type Props = OutterProps & StateProps & DispatchProps;
 
 const component: React.SFC<Props> = (props: Props) => {
-    return (
-        <div>
-            <button
-                onClick={_ => {
-                    props.onClick();
-                }}
-                disabled={props.disabled}
-            >
-                {props.label}
-            </button>
-        </div>
-    );
+  return (
+    <div>
+      <button
+        onClick={_ => { props.onClick(); }}
+        disabled={props.disabled}
+      >
+        {props.label}
+      </button>
+    </div>
+  );
 };
 
 const mapStateToProps = (state: RootState): StateProps => ({
-    disabled: state.api.onFetch,
+  disabled: state.api.onFetch,
 });
 
 const mapDispatchToProps = (
-    dispatch: ThunkDispatch<RootState, undefined, RootActions>
+  dispatch: ThunkDispatch<RootState, undefined, RootActions>
 ): DispatchProps => ({
-    onClick: () => {
-        dispatch(actionCreator.api.getData(123));
-    },
+  onClick: () => {
+    dispatch(actionCreator.api.getData(123));
+  },
 });
 
 export default connect<StateProps, DispatchProps, OutterProps, RootState>(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(component);

@@ -14,19 +14,6 @@ export interface RecieveFetchAction extends Action {
   payload: RecieveFetchPayload;
 }
 
-// export type RootState = {api: ApiState;};
-
-// export type RootActions = ApiActions;
-
-
-// export type FailureFetchPayload = {
-//   message: string
-// }
-
-// export type RecieveFetchPayload = {
-//   [key: string]: string;
-// };
-
 export type ApiActions = StartFetchAction &
   FailureFetchAction &
   RecieveFetchAction;

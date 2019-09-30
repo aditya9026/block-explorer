@@ -14,7 +14,7 @@ const component: React.SFC<Props> = (props: Props) => {
     <div>
       {props.error == null ? (
         <ul>
-          {props.data.map((e:any) => (
+          {props.data.map((e: any) => (
             <li key={e.id}>{e.messages} {e.fee}</li>
           ))}
         </ul>
