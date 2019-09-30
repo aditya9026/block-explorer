@@ -1,39 +1,26 @@
-import * as React from 'react'
-import './App.css';
-import Search from "./containers/Search";
-import Navbar from 'react-bootstrap/Navbar'
-import Container from 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import * as React from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import ReduxThunk, { ThunkMiddleware } from 'redux-thunk';
+import DataArea from './component/DataArea';
+import FetchController from './component/FetchController';
+import { rootReducer } from './modules';
+import { RootState, RootActions } from './modules/Types';
 
-const App: React.FC = () => {
+const store = createStore<RootState, RootActions, {}, {}>(
+  rootReducer,
+  applyMiddleware(ReduxThunk as ThunkMiddleware<RootState, RootActions>)
+);
+
+const component: React.SFC = () => {
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Navbar fixed="top" className="nav-bar">
-            <Navbar.Brand href="/">
-              <img
-                alt="iov"
-                src="/logo-iov.png"
-                width="60"
-                height="30"
-                className="d-inline-block align-top"
-                />
-            </Navbar.Brand>
-            <Navbar.Collapse className="justify-content-end lr-padding bold">
-              <Navbar.Text>
-                {'Block Explorer'}
-              </Navbar.Text>
-            </Navbar.Collapse>
-          </Navbar>
-          <div className="app-body">
-            <Search />
-          </div>
-        </Col>
-      </Row>
-    </Container>
+    <Provider store={store}>
+      <div>
+        <FetchController label={'Fetch!!!'} />
+        <DataArea />
+      </div>
+    </Provider>
   );
-}
+};
 
-export default App;
+export default component;
