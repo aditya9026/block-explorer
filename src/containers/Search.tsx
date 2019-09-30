@@ -1,35 +1,35 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Dispatch } from "redux";
+import { Dispatch, AnyAction } from "redux";
 import * as MyTypes from "MyTypes";
-import { actionTypes } from "../actions";
+import { searchBlocks } from "../actions";
+import { ThunkDispatch } from "redux-thunk";
 
 interface SearchState {
   todoInput: string;
 }
 
 interface SearchProps {
-  list: string[];
-  findBlocks: (block: string) => object;
+  blocks: string[];
+}
+interface TodoActions {
+  searchBlocks: () => void;
 }
 
 class Search extends React.Component < SearchProps, SearchState > {
 
-  handleTextChange = (e: any) => {
-    this.props.findBlocks(e.target.value);
+  handleSubmit = () => {
+    // this.props.findBlocks;
   };
 
-  handleSubmit = () => {
-    // this.props.findBlocks();
+  handleTextChange = (e: any) => {
+    // this.props.searchBlocks(e.target.value);
   };
 
   render() {
     return (
       <div className="search-box">
-        <input
-          onChange={this.handleTextChange}
-          placeholder={"Search Blocks..."}
-        />
+        <input onChange={this.handleTextChange} placeholder={"Search Blocks..."} />
         <button onClick={this.handleSubmit}>Search</button>
       </div>
     );
@@ -38,15 +38,17 @@ class Search extends React.Component < SearchProps, SearchState > {
 
 const MapStateToProps = (store: MyTypes.ReducerState) => {
   return {
-    list: store.todo.list
+    blocks: store.todoSearch
   };
 };
 
-const MapDispatchToProps = (dispatch: Dispatch<MyTypes.RootAction>) => ({
-  findBlocks: (param: string) => dispatch({ type: actionTypes.FIND, payload: param }),
-});
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, AnyAction>) => {
+  return {
+    searchBlocks: () => dispatch(searchBlocks()),
+  };
+};
 
-export default connect(
+export default connect<SearchProps, TodoActions, {blocks: string}>(
   MapStateToProps,
-  MapDispatchToProps
+  mapDispatchToProps
 )(Search);
