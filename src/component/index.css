@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css?family=Sarabun');
+
+h1 {
+  margin: 2rem;
+}
+
+.search-box{
+  margin: 3em;
+}
+.header-container {
+  max-width: 1295px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+}
+.logo {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  margin: 15px 30px 15px 0;
+}
+.nav-holder {
+  display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    z-index: 3;
+    z-index: 12;
+}
+ .nav-opener span {
+   -webkit-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    background: #1a1a1a;
+    border-radius: 4px;
+    position: absolute;
+    top: 17px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    margin-top: -2px;
+ }
+ .nav-opener {
+   display: none;
+ }
+.nav-drop {
+  margin: 0;
+    padding: 0;
+    list-style: none;
+    -webkit-transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
+    transition: opacity .2s ease-in-out, visibility .2s ease-in-out;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    font-size: 15px;
+    padding: 15px 0;
+}
+.nav-drop li {
+  position: relative;
+margin-left: 34px;
+padding: 8px 0;
+}
+.nav-drop .menu-button {
+  padding: 0;
+    max-width: inherit;
+    width: auto;
+}
+.nav-drop .menu-button a{
+  -webkit-transition: background-color .2s ease-in-out, color .2s ease-in-out, border-color .2s ease-in-out;
+transition: background-color .2s ease-in-out, color .2s ease-in-out, border-color .2s ease-in-out;
+border: 1px solid #d0d0d0;
+border-radius: 6px;
+padding: 6px 10px 8px 10px;
+}
+.nav-drop .menu-button.inverted a{
+  background-color: #35c1b3 !important;
+    color: #fff !important;
+    border-color: #35c1b3;
+}
+.nav-drop a{
+  transition: color .2s ease-in-out;
+    font-weight: 700;
+    color: #35c1b3;
+    text-decoration: none;
+    display: block;
+}
+.searchbar {
+  font-size: 18px;
+  padding: 15px 20px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  background-color: white;
+  border: 1px solid #35c1b3;
+  transition: all .2s;
+  transition-delay: .1s;
+  min-width: 30vw;
+}
+
+.button {
+  margin-left: 1rem;
+  border-radius: 4px;
+  font-size: 15px;
+  border-radius: 4px;
+  background-color: #35c1b3;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-color: transparent;
+  padding: 1rem 3rem;
+  color: #fff;
+}
+.data-card {
+  text-align: center;
+  border: 1px solid #eee;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.card-body > div {
+  display: flex;
+  justify-content:space-between;
+  align-items: center;
+  padding:10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.searchbar::placeholder {
+  opacity: .5;
+  color: #fff
+}
