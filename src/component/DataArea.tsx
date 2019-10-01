@@ -10,18 +10,27 @@ type StateProps = {
 type Props = StateProps;
 
 const component: React.SFC<Props> = (props: Props) => {
+  console.log(props)
   return (
-    <div>
-      {props.error == null ? (
-        <ul>
-          {props.data.map((e: any) => (
-            <li key={e.id}>{e.messages} {e.fee}</li>
-          ))}
-        </ul>
-      ) : (
-          <span>{props.error}</span>
-        )}
-    </div>
+    <div className="container" >
+      <div className="data-card">
+        <div>
+          {props.error == null ? (
+            <div className="card-body">
+              {props.data.map((e: any) => (
+                <div>
+                  <span key={e.id} className="card-text">{e.messages} </span>
+                  <span>{e.fee}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+              <span>{props.error}</span>
+            )}
+
+        </div>
+        </div>
+      </div>
   );
 };
 

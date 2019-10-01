@@ -14,12 +14,50 @@ const store = createStore<RootState, RootActions, {}, {}>(
 
 const component: React.SFC = () => {
   return (
-    <Provider store={store}>
-      <div>
-        <FetchController label={'Fetch!!!'} />
-        <DataArea />
+    <div className="container">
+      <div className="container header-container">
+        <div className="logo">
+          <a href="#">
+            <img src="https://iov.one/src/images/logo@2x-2bb7a2d2.png" width="123" alt="IOV" />
+          </a>
+        </div>
+        <div className="nav-holder">
+          <nav id="nav">
+            <a href="#" className="nav-opener">
+              <span>Menu</span>
+            </a>
+            <div>
+              <ul className="nav-drop">
+                <li className="">
+                  <a href="https://docs.iov.one" target="_blank">Documentation</a>
+                </li>
+                <li className="">
+                  <a href="https://github.com/iov-one" target="_blank">Github</a>
+                </li>
+                <li className="">
+                  <a href="https://medium.com/iov-internet-of-values" target="_blank">Blog</a>
+                </li>
+                <li className="menu-button">
+                  <a href="https://register.iov.one/form/80662587859374?ref=WBS">Get IOV Tokens</a>
+                </li>
+                <li className="menu-button inverted">
+                  <a href="/request_information">Request Information</a>
+                </li>
+              </ul>
+            </div>
+           </nav>
+        </div>
       </div>
-    </Provider>
+      <div className="text-center">
+        <h1>Block Explorer</h1>
+      </div>
+      <Provider store={store}>
+        <div>
+          <FetchController label={'Fetch'} />
+          <DataArea />
+        </div>
+      </Provider>
+    </div>
   );
 };
 

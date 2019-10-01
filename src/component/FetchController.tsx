@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { actionCreator } from '../modules';
 import { ThunkDispatch } from 'redux-thunk';
 import { RootState, RootActions } from '../modules/Types';
+import './index.css'
 
 type OutterProps = {
   label: string;
@@ -20,13 +21,17 @@ type Props = OutterProps & StateProps & DispatchProps;
 
 const component: React.SFC<Props> = (props: Props) => {
   return (
-    <div>
-      <button
-        onClick={_ => { props.onClick(); }}
-        disabled={props.disabled}
-      >
-        {props.label}
-      </button>
+    <div className="container search-box">
+      <div className="row justify-content-center">
+        <input className="searchbar" type="text" name="" placeholder="Search..."></input>
+        <button
+          className="button"
+          onClick={_ => { props.onClick(); }}
+          disabled={props.disabled}
+        >
+          {props.label}
+        </button>
+      </div>
     </div>
   );
 };
