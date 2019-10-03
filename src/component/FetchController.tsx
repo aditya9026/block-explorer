@@ -20,11 +20,12 @@ type DispatchProps = {
 type Props = OutterProps & StateProps & DispatchProps;
 
 const component: React.SFC<Props> = (props: Props) => {
-
   return (
     <div className="container search-box">
       <div className="row justify-content-center">
         <input
+          id="fee_price"
+          placeholder="Enter fee fraction"
           className="searchbar"
           type="number"
           onChange={(e) => props.onClick(e.currentTarget.value)}></input>

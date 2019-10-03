@@ -46,11 +46,11 @@ const component: React.SFC = () => {
         </div>
       </div>
       <div className="text-center">
-        <h1>Block Explorer</h1>
+        <div className="head-title">Block Explorer</div>
       </div>
       <Provider store={store}>
         <div>
-          <FetchController label={'Fetch'} />
+          <FetchController label={'Search'} />
           <DataArea />
         </div>
       </Provider>
