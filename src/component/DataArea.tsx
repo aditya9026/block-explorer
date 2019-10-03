@@ -15,7 +15,6 @@ const component: React.SFC<Props> = (props: Props) => {
     <div className="container" >
       <div className="data-card">
         <div>
-          {console.log(props)}
           {(props.data.status && props.data.data.length > 0) ? (
             <div>
               { props.data.data.map((res: any) => (
@@ -39,7 +38,7 @@ const component: React.SFC<Props> = (props: Props) => {
             </div>
           ) : (props.error ?
               <span>{"Please check your entry"}</span> :
-              <span>{'No Data Found'}</span>
+              <span>{'No result found'}</span>
             )}
         </div>
         </div>
