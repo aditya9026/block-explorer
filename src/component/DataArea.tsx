@@ -4,30 +4,32 @@ import { RootState } from '../modules/Types';
 
 type StateProps = {
   error?: string;
-  data: any
+  status?: string;
+  data: any;
 };
 
 type Props = StateProps;
 
 const component: React.SFC<Props> = (props: Props) => {
-  console.log(props)
   return (
     <div className="container" >
       <div className="data-card">
         <div>
-          {props.error == null ? (
+          {(props.data.status && props.data.data.length > 0) ? (
             <div className="card-body">
-              {props.data.map((e: any) => (
-                <div>
-                  <span key={e.id} className="card-text">{e.messages} </span>
-                  <span>{e.fee}</span>
+              { props.data.data.map((res: any) => (
+                <div key={res.BlockHeight}>
+                  <span className="card-text">{res.BlockHeight}</span>
+                  <span>{res.FeeFrac}</span>
+                  <span>{res.Messages}</span>
+                  <span>{res.BlockHash}</span>
                 </div>
               ))}
             </div>
-          ) : (
-              <span>{props.error}</span>
+          ) : (props.error ?
+              <span>{props.error}</span> :
+              <span>{'No Data'}</span>
             )}
-
         </div>
         </div>
       </div>

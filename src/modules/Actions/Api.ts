@@ -27,8 +27,7 @@ export const getData = (x: any): ThunkAction<
 > => async (dispatch: Dispatch<Action>) => {
   dispatch(startFetch(x));
   try {
-    console.log(x)
-    const resp = await fetch('http://localhost:3001/blocks/');
+    const resp = await fetch(`http://localhost:3001/api/blocks/${x}`);
     const body = await resp.json();
     dispatch(recieveFetch(body));
   } catch (e) {

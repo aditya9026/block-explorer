@@ -14,20 +14,24 @@ type StateProps = {
 };
 
 type DispatchProps = {
-  onClick: () => void;
+  onClick: (key: any) => any;
 };
 
 type Props = OutterProps & StateProps & DispatchProps;
 
 const component: React.SFC<Props> = (props: Props) => {
+
   return (
     <div className="container search-box">
       <div className="row justify-content-center">
-        <input className="searchbar" type="text" name="" placeholder="Search..."></input>
+        <input
+          className="searchbar"
+          type="number"
+          onChange={(e) => props.onClick(e.currentTarget.value)}></input>
         <button
           className="button"
-          onClick={_ => { props.onClick(); }}
-          disabled={props.disabled}
+          // onClick={(e) => props.onClick(e.target)}
+          // disabled={props.disabled}
         >
           {props.label}
         </button>
@@ -43,9 +47,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootState, undefined, RootActions>
 ): DispatchProps => ({
-  onClick: () => {
-    dispatch(actionCreator.api.getData(123));
-  },
+  onClick: (key: any) => { dispatch(actionCreator.api.getData(key)) },
 });
 
 export default connect<StateProps, DispatchProps, OutterProps, RootState>(
