@@ -27,7 +27,7 @@ export const getData = (x: any): ThunkAction<
 > => async (dispatch: Dispatch<Action>) => {
   dispatch(startFetch(x));
   try {
-    const resp = await fetch(`http://localhost:3001/api/blocks/${x}`);
+    const resp = await fetch(`https://blocks-explorer-api.herokuapp.com/api/blocks/${x}`);
     const body = await resp.json();
     dispatch(recieveFetch(body));
   } catch (e) {
