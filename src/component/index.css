@@ -134,6 +134,9 @@ h1 {
   float: right;
   /* padding: 3px; */
 }
+.card {
+  margin-top: 1.5rem !important;
+}
 .card-body {
   border-radius: 10px;
   border-color: #35c1b3;

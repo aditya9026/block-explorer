@@ -33,8 +33,8 @@ const component: React.SFC<Props> = (props: Props) => {
           <div className="head-title">Block Explorer</div>
         </div>
       </div>
-      <Tabs defaultActiveKey="explorer" id="uncontrolled-tab">
-        <Tab eventKey="last transactions" title="Previous Record">
+      <Tabs defaultActiveKey="last_record" id="uncontrolled-tab">
+        <Tab eventKey="last_record" title="Previous Record">
           <List/>
         </Tab>
         <Tab eventKey="block" title="Block">

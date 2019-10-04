@@ -1,7 +1,7 @@
 import { ApiActions, ApiState } from "../Types/Api";
 
 export const apiReducer = (
-  state: ApiState = { onFetch: false, data: {}, error: 'Please fetch.' },
+  state: ApiState = { onFetch: false, data: {}, dataList: {}, error: 'Please fetch.' },
   action: ApiActions
 ) => {
   switch (action.type) {
@@ -13,6 +13,12 @@ export const apiReducer = (
       return Object.assign({}, state, {
         onFetch: false,
         data: action.payload,
+        error: null,
+      });
+    case 'RECIEVE_FETCH_LIST':
+      return Object.assign({}, state, {
+        onFetch: false,
+        dataList: action.payload,
         error: null,
       });
     default:

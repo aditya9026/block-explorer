@@ -1,72 +1,84 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { RootState } from '../modules/Types';
 import { Tabs, Tab } from 'react-bootstrap';
+import { RootState, RootActions } from '../modules/Types';
+import { actionCreator } from '../modules';
+import { ThunkDispatch } from 'redux-thunk';
 
-type StateProps = {
-  error?: string;
-  status?: string;
+interface ListState {
+  todo: string;
+}
+
+interface ListProps {
   data: any;
-};
+  error: any;
+  getlastData: () => any;
+}
 
-type Props = StateProps;
+class ListContainer extends React.Component<ListProps, ListState> {
 
-const component: React.SFC<Props> = (props: Props) => {
-  return (
-    <div className="container" >
-      <div className="data-card">
-        <div>
-          <Tabs defaultActiveKey="explorer-record" id="data-tab">
+  componentWillMount() {
+    this.props.getlastData()
+  }
+
+  render() {
+    const { data } = this.props
+    return (
+      <div className="container" >
+        <div className="data-card">
+          <Tabs defaultActiveKey="last_blocks" id="data-tab">
             <Tab eventKey="last_blocks" title="Blocks">
-              {(props.data.status && props.data.block) ? (
-                <div className="col-sm-12 col-md-12 col-lg-12">
+              {(data.status && data.blocks_last && data.blocks_last.length > 0) && data.blocks_last.map((res: any) => (
+                <div key={res.BlockHash} className="col-sm-12 col-md-12 col-lg-12">
                   <div className="card mb-4">
                     <div className="card-body" >
                       <div className="title">{"BlockHash"}</div>
-                      <div className="value">{props.data.block.BlockHash}</div>
+                      <div className="value">{res.BlockHash}</div>
                       <div className="title">{"FeeFrac"}</div>
-                      <div className="value">{props.data.block.FeeFrac}</div>
+                      <div className="value">{res.FeeFrac}</div>
                       <div className="title">{"Messages"}</div>
-                      <div className="value">{Object.keys(props.data.block.Messages).length === 0 ? '-' : props.data.block.Messages}</div>
+                      <div className="value">{Object.keys(res.Messages).length === 0 ? '-' : res.Messages}</div>
                       <div className="title">{"ProposerID"}</div>
-                      <div className="value">{props.data.block.ProposerID}</div>
+                      <div className="value">{res.ProposerID}</div>
                     </div>
                   </div>
                 </div>
-              ) : (props.error ?
-                <span>{"Please check your entry"}</span> :
-                <span>{'No result found'}</span>
-                )}
+              ))}
             </Tab>
             <Tab eventKey="last_transactions" title="Transactions">
-            </Tab>
-            {(props.data.status && props.data.transaction) ? (
-              <div className="col-sm-12 col-md-12 col-lg-12">
-                <div className="card mb-4">
-                  <div className="card-body" >
-                    <div className="title">{"TransactionHash"}</div>
-                    <div className="value">{props.data.transaction.TransactionHash}</div>
-                    <div className="title">{"Message"}</div>
-                    <div className="value">{props.data.transaction.Message}</div>
+              {(data.status && data.transactions_last && data.transactions_last.length > 0) && data.transactions_last.map((res: any) => (
+                <div key={res.TransactionHash} className="col-sm-12 col-md-12 col-lg-12">
+                  <div className="card mb-4">
+                    <div className="card-body" >
+                      <div className="title">{"TransactionHash"}</div>
+                      <div className="value">{res.TransactionHash}</div>
+                      <div className="title">{"Message"}</div>
+                      <div className="value">{res.Message}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : (props.error ?
-              <span>{"Something went wrong"}</span> :
-              <span>{'No result found'}</span>
-              )}
+              ))}
+            </Tab>
           </Tabs>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
+
+
+const MapStateToProps = (state: RootState) => {
+  return {
+    error: state.api.error,
+    data: state.api.dataList,
+  };
 };
 
-const mapStateToProps = (state: RootState): StateProps => ({
-  error: state.api.error,
-  data: state.api.data,
+const MapDispatchToProps = (dispatch: ThunkDispatch<RootState, undefined, RootActions>) => ({
+  getlastData: () => { dispatch(actionCreator.api.getlastData()) },
 });
 
-export default connect<StateProps, {}, {}, RootState>(mapStateToProps)(
-  component
-);
+export default connect(
+  MapStateToProps,
+  MapDispatchToProps
+)(ListContainer);
