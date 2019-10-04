@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../modules/Types';
+import { Tabs, Tab } from 'react-bootstrap';
 
 type StateProps = {
   error?: string;
@@ -15,9 +16,9 @@ const component: React.SFC<Props> = (props: Props) => {
     <div className="container" >
       <div className="data-card">
         <div>
-          {(props.data.status) ? (
-            <div>
-              {props.data.block && (
+          <Tabs defaultActiveKey="explorer-record" id="data-tab">
+            <Tab eventKey="last_blocks" title="Blocks">
+              {(props.data.status && props.data.block) ? (
                 <div className="col-sm-12 col-md-12 col-lg-12">
                   <div className="card mb-4">
                     <div className="card-body" >
@@ -32,8 +33,15 @@ const component: React.SFC<Props> = (props: Props) => {
                     </div>
                   </div>
                 </div>
-              )}
-              {props.data.transaction && <div className="col-sm-12 col-md-12 col-lg-12">
+              ) : (props.error ?
+                <span>{"Please check your entry"}</span> :
+                <span>{'No result found'}</span>
+                )}
+            </Tab>
+            <Tab eventKey="last_transactions" title="Transactions">
+            </Tab>
+            {(props.data.status && props.data.transaction) ? (
+              <div className="col-sm-12 col-md-12 col-lg-12">
                 <div className="card mb-4">
                   <div className="card-body" >
                     <div className="title">{"TransactionHash"}</div>
@@ -43,12 +51,11 @@ const component: React.SFC<Props> = (props: Props) => {
                   </div>
                 </div>
               </div>
-              }
-            </div>
-          ) : (props.error ?
-            <span>{"Please check your entry"}</span> :
-            <span>{'No result found'}</span>
-            )}
+            ) : (props.error ?
+              <span>{"Something went wrong"}</span> :
+              <span>{'No result found'}</span>
+              )}
+          </Tabs>
         </div>
       </div>
     </div>

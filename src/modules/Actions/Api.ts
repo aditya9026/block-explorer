@@ -29,3 +29,13 @@ export const getData = (param: any, type: string): ThunkAction<void, RootState, 
     dispatch(failureFetch({ message: e.message }));
   }
 };
+export const getlastData = (): ThunkAction<void, RootState, undefined, RootActions> => async (dispatch: Dispatch<Action>) => {
+  dispatch(startFetch());
+  try {
+    const resp = await fetch(`https://blocks-explorer-api.herokuapp.com/api/`);
+    const body = await resp.json();
+    dispatch(recieveFetch(body));
+  } catch (e) {
+    dispatch(failureFetch({ message: e.message }));
+  }
+};

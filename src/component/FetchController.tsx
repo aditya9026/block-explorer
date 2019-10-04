@@ -5,7 +5,10 @@ import { ThunkDispatch } from 'redux-thunk';
 import { RootState, RootActions } from '../modules/Types';
 import { Tab, Tabs } from 'react-bootstrap'
 import './index.css'
-import DataArea from './DataArea';
+import BlockDataArea from './BlockDataArea';
+import TransactionDataArea from './TransactionDataArea';
+import List from './List';
+
 type OutterProps = {
   label: string;
 };
@@ -16,9 +19,11 @@ type StateProps = {
 
 type DispatchProps = {
   onChange: (key: any, type:string) => any;
+  getlastData:() => any;
 };
 
 type Props = OutterProps & StateProps & DispatchProps;
+
 
 const component: React.SFC<Props> = (props: Props) => {
   return (
@@ -30,29 +35,29 @@ const component: React.SFC<Props> = (props: Props) => {
       </div>
       <Tabs defaultActiveKey="explorer" id="uncontrolled-tab">
         <Tab eventKey="last transactions" title="Previous Record">
-          {'In progress'}
+          <List/>
         </Tab>
-        <Tab eventKey="Block" title="Block">
+        <Tab eventKey="block" title="Block">
           <div className="row justify-content-center search-box">
             <input
-              id="fee_price"
-              placeholder="Enter fee fraction"
+              id="block-input"
+              placeholder="Enter Block Id"
               className="searchbar"
               onChange={(e) => props.onChange(e.currentTarget.value, 'block')}>
             </input>
           </div>
-          <DataArea />
+          <BlockDataArea/>
         </Tab>
-        <Tab eventKey="Transaction" title="Transaction">
+        <Tab eventKey="transaction" title="Transaction">
           <div className="row justify-content-center search-box">
             <input
-              id="fee_price"
-              placeholder="Enter fee fraction"
+              id="transaction-input"
+              placeholder="Enter Transaction Id"
               className="searchbar"
               onChange={(e) => props.onChange(e.currentTarget.value, 'transaction')}>
             </input>
           </div>
-          <DataArea />
+          <TransactionDataArea/>
         </Tab>
       </Tabs>
     </div >
@@ -67,6 +72,7 @@ const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootState, undefined, RootActions>
 ): DispatchProps => ({
   onChange: (key: any, type:string) => { dispatch(actionCreator.api.getData(key, type)) },
+  getlastData: () => {dispatch(actionCreator.api.getlastData())},
 });
 
 export default connect<StateProps, DispatchProps, OutterProps, RootState>(
