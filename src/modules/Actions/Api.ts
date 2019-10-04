@@ -19,15 +19,10 @@ export const recieveFetch: ActionCreator<RootActions> = (
   payload: RecieveFetchPayload
 ): RootActions => ({ payload, type: 'RECIEVE_FETCH' } as RootActions);
 
-export const getData = (x: any): ThunkAction<
-  void,
-  RootState,
-  undefined,
-  RootActions
-> => async (dispatch: Dispatch<Action>) => {
-  dispatch(startFetch(x));
+export const getData = (param: any, type: string): ThunkAction<void, RootState, undefined, RootActions> => async (dispatch: Dispatch<Action>) => {
+  dispatch(startFetch(param));
   try {
-    const resp = await fetch(`https://blocks-explorer-api.herokuapp.com/api/blocks/${x}`);
+    const resp = await fetch(`https://blocks-explorer-api.herokuapp.com/api/${type}/${param}`);
     const body = await resp.json();
     dispatch(recieveFetch(body));
   } catch (e) {

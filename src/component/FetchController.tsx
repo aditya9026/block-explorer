@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { actionCreator } from '../modules';
 import { ThunkDispatch } from 'redux-thunk';
 import { RootState, RootActions } from '../modules/Types';
+import { Tab, Tabs } from 'react-bootstrap'
 import './index.css'
-
+import DataArea from './DataArea';
 type OutterProps = {
   label: string;
 };
@@ -14,30 +15,47 @@ type StateProps = {
 };
 
 type DispatchProps = {
-  onClick: (key: any) => any;
+  onChange: (key: any, type:string) => any;
 };
 
 type Props = OutterProps & StateProps & DispatchProps;
 
 const component: React.SFC<Props> = (props: Props) => {
   return (
-    <div className="container search-box">
-      <div className="row justify-content-center">
-        <input
-          id="fee_price"
-          placeholder="Enter fee fraction"
-          className="searchbar"
-          type="number"
-          onChange={(e) => props.onClick(e.currentTarget.value)}></input>
-        <button
-          className="button"
-          // onClick={(e) => props.onClick(e.target)}
-          // disabled={props.disabled}
-        >
-          {props.label}
-        </button>
+    <div>
+      <div>
+        <div className="text-center">
+          <div className="head-title">Block Explorer</div>
+        </div>
       </div>
-    </div>
+      <Tabs defaultActiveKey="explorer" id="uncontrolled-tab">
+        <Tab eventKey="last transactions" title="Previous Record">
+          {'In progress'}
+        </Tab>
+        <Tab eventKey="Block" title="Block">
+          <div className="row justify-content-center search-box">
+            <input
+              id="fee_price"
+              placeholder="Enter fee fraction"
+              className="searchbar"
+              onChange={(e) => props.onChange(e.currentTarget.value, 'block')}>
+            </input>
+          </div>
+          <DataArea />
+        </Tab>
+        <Tab eventKey="Transaction" title="Transaction">
+          <div className="row justify-content-center search-box">
+            <input
+              id="fee_price"
+              placeholder="Enter fee fraction"
+              className="searchbar"
+              onChange={(e) => props.onChange(e.currentTarget.value, 'transaction')}>
+            </input>
+          </div>
+          <DataArea />
+        </Tab>
+      </Tabs>
+    </div >
   );
 };
 
@@ -48,7 +66,7 @@ const mapStateToProps = (state: RootState): StateProps => ({
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootState, undefined, RootActions>
 ): DispatchProps => ({
-  onClick: (key: any) => { dispatch(actionCreator.api.getData(key)) },
+  onChange: (key: any, type:string) => { dispatch(actionCreator.api.getData(key, type)) },
 });
 
 export default connect<StateProps, DispatchProps, OutterProps, RootState>(

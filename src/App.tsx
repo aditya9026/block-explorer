@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk, { ThunkMiddleware } from 'redux-thunk';
-import DataArea from './component/DataArea';
 import FetchController from './component/FetchController';
 import { rootReducer } from './modules';
 import { RootState, RootActions } from './modules/Types';
@@ -22,13 +21,9 @@ const component: React.SFC = () => {
           </a>
         </div>
       </div>
-      <div className="text-center">
-        <div className="head-title">Block Explorer</div>
-      </div>
       <Provider store={store}>
         <div>
           <FetchController label={'Search'} />
-          <DataArea />
         </div>
       </Provider>
     </div>
