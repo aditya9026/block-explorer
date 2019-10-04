@@ -36,8 +36,8 @@ export const getData = (param: any, type: string): ThunkAction<void, RootState, 
 export const getlastData = (): ThunkAction<void, RootState, undefined, RootActions> => async (dispatch: Dispatch<Action>) => {
   dispatch(startFetch());
   try {
-    const resp = await fetch(`http://localhost:3001/api/last_records`);
-    // const resp = await fetch(`https://blocks-explorer-api.herokuapp.com/api/`);
+    // const resp = await fetch(`http://localhost:3001/api/last_records`);
+    const resp = await fetch(`https://blocks-explorer-api.herokuapp.com/api/last_records`);
     const body = await resp.json();
     dispatch(recieveFetchList(body));
   } catch (e) {
