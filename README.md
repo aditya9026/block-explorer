@@ -18,7 +18,8 @@ Your app is ready to be deployed!
 
 ### get block/transaction record
 
-https://blocks-explorer-api.herokuapp.com/api/blocks/{key}
+https://blocks-explorer-api.herokuapp.com/api/block/{key}
+https://blocks-explorer-api.herokuapp.com/api/transaction/{key}
 
 ### get last 10 blocks/transactions records
 
