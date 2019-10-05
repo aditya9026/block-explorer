@@ -48,7 +48,7 @@ class FetchController extends React.Component<DispatchProps, StateProps> {
             <div className="head-title">Block Explorer</div>
           </div>
         </div>
-        <Tabs defaultActiveKey="last_record" id="uncontrolled-tab" onSelect={() => this.onSelect()}>
+        <Tabs defaultActiveKey="last_record" id="uncontrolled-tab" className="bt-tab" onSelect={() => this.onSelect()}>
           <Tab eventKey="block" title="Block">
             <div className="row justify-content-center search-box">
               <input

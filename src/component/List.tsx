@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Tabs, Tab } from 'react-bootstrap';
+import { Row, Col, Tabs, Tab } from 'react-bootstrap';
 import { RootState, RootActions } from '../modules/Types';
 import { actionCreator } from '../modules';
 import { ThunkDispatch } from 'redux-thunk';
-
 interface ListState {
   todo: string;
 }
@@ -32,14 +31,26 @@ class ListContainer extends React.Component<ListProps, ListState> {
                 <div key={res.BlockHash} className="col-sm-12 col-md-12 col-lg-12">
                   <div className="card mb-4">
                     <div className="card-body" >
-                      <div className="title">{"BlockHash"}</div>
-                      <div className="value">{res.BlockHash}</div>
-                      <div className="title">{"FeeFrac"}</div>
-                      <div className="value">{res.FeeFrac}</div>
-                      <div className="title">{"Messages"}</div>
-                      <div className="value">{Object.keys(res.Messages).length === 0 ? '-' : res.Messages}</div>
-                      <div className="title">{"ProposerID"}</div>
-                      <div className="value">{res.ProposerID}</div>
+                      <Row>
+                        <Col>
+                          <div className="title">{"BlockHash"}</div>
+                          <div className="value">{res.BlockHash}</div>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
+                          <div className="title">{"FeeFrac"}</div>
+                          <div className="value">{res.FeeFrac}</div>
+                        </Col>
+                        <Col>
+                          <div className="title">{"Messages"}</div>
+                          <div className="value">{Object.keys(res.Messages).length === 0 ? '-' : res.Messages}</div>
+                        </Col>
+                        <Col>
+                          <div className="title">{"ProposerID"}</div>
+                          <div className="value">{res.ProposerID}</div>
+                        </Col>
+                      </Row>
                     </div>
                   </div>
                 </div>

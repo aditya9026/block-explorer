@@ -38,8 +38,8 @@ export const recieveFetchList: ActionCreator<RootActions> = (
 export const getData = (param: any, type: string): ThunkAction<void, RootState, undefined, RootActions> => async (dispatch: Dispatch<Action>) => {
   type === 'block' ? dispatch(startFetchBlock(param)) : dispatch(startFetchTransaction(param));
   try {
-    const resp = await fetch(`http://localhost:3001/api/${type}/${param}`);
-    // const resp = await fetch(`https://blocks-explorer-api.herokuapp.com/api/${type}/${param}`);
+    // const resp = await fetch(`http://localhost:3001/api/${type}/${param}`);
+    const resp = await fetch(`https://blocks-explorer-api.herokuapp.com/api/${type}/${param}`);
     const body = await resp.json();
     type === 'block' ? dispatch(recieveFetchBlock(body)) : dispatch(recieveFetchTransaction(body))
   } catch (e) {

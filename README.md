@@ -16,5 +16,10 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
-## api endpoint
+### get block/transaction record
+
 https://blocks-explorer-api.herokuapp.com/api/blocks/{key}
+
+### get last 10 blocks/transactions records
+
+https://blocks-explorer-api.herokuapp.com/api/last_records
