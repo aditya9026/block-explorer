@@ -11,6 +11,8 @@ type StateProps = {
 type Props = StateProps;
 
 const component: React.SFC<Props> = (props: Props) => {
+  console.log(props);
+
   return (
     <div className="container" >
       <div className="data-card">
