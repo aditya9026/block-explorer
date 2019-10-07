@@ -95,6 +95,6 @@ h1 {
   border-bottom: 5px solid #4cc1b3;
   color: #4cc1b3;
 }
-a.nav-link:active, a.nav-link:visited{
+a, a.nav-link:active, a.nav-link:visited{
   color: #4cc1b3;
 }
