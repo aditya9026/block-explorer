@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../modules/Types';
+import { formatter } from '../utils/utils'
+import { Row, Col } from 'react-bootstrap';
 
 type StateProps = {
   error?: string;
@@ -19,10 +21,28 @@ const component: React.SFC<Props> = (props: Props) => {
             <div className="col-sm-12 col-md-12 col-lg-12">
               <div className="card mb-4">
                 <div className="card-body" >
-                  <div className="title">{"TransactionHash"}</div>
-                  <div className="value">{props.data.transaction.TransactionHash}</div>
-                  <div className="title">{"Message"}</div>
-                  <div className="value">{props.data.transaction.Message}</div>
+                  <Row>
+                    <Col>
+                      <div className="title">{"TransactionHash"}</div>
+                      <div className="value">{props.data.transaction.TransactionHash}</div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div className="title">{"Address"}</div>
+                      <div className="value">{formatter(props.data.transaction.Message).address}</div>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <div className="title">{"BlockchainId"}</div>
+                      <div className="value">{formatter(props.data.transaction.Message).blockChainId}</div>
+                    </Col>
+                    <Col>
+                      <div className="title">{"Username"}</div>
+                      <div className="value">{formatter(props.data.transaction.Message).userName}</div>
+                    </Col>
+                  </Row>
                 </div>
               </div>
             </div>

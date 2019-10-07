@@ -4,6 +4,7 @@ import { Row, Col, Tabs, Tab } from 'react-bootstrap';
 import { RootState, RootActions } from '../modules/Types';
 import { actionCreator } from '../modules';
 import { ThunkDispatch } from 'redux-thunk';
+import { formatter } from '../utils/utils';
 interface ListState {
   todo: string;
 }
@@ -61,10 +62,28 @@ class ListContainer extends React.Component<ListProps, ListState> {
                 <div key={res.TransactionHash} className="col-sm-12 col-md-12 col-lg-12">
                   <div className="card mb-4">
                     <div className="card-body" >
-                      <div className="title">{"TransactionHash"}</div>
-                      <div className="value">{res.TransactionHash}</div>
-                      <div className="title">{"Message"}</div>
-                      <div className="value">{res.Message}</div>
+                    <Row>
+                        <Col>
+                          <div className="title">{"TransactionHash"}</div>
+                          <div className="value">{res.TransactionHash}</div>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
+                          <div className="title">{"Address"}</div>
+                          <div className="value">{formatter(res.Message).address}</div>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
+                          <div className="title">{"BlockchainId"}</div>
+                          <div className="value">{formatter(res.Message).blockChainId}</div>
+                        </Col>
+                        <Col>
+                          <div className="title">{"Username"}</div>
+                          <div className="value">{formatter(res.Message).userName}</div>
+                        </Col>
+                      </Row>
                     </div>
                   </div>
                 </div>
