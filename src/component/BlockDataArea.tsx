@@ -28,6 +28,16 @@ const component: React.SFC<Props> = (props: Props) => {
                     </Col>
                   </Row>
                   <Row>
+                  <Col>
+                      <div className="title">{"BlockHeight"}</div>
+                      <div className="value">{props.data.block.BlockHeight}</div>
+                    </Col>
+                    <Col>
+                      <div className="title">{"ProposerID"}</div>
+                      <div className="value">{props.data.block.ProposerID}</div>
+                    </Col>
+                  </Row>
+                  <Row>
                     <Col>
                       <div className="title">{"FeeFrac"}</div>
                       <div className="value">{props.data.block.FeeFrac}</div>
@@ -35,10 +45,6 @@ const component: React.SFC<Props> = (props: Props) => {
                     <Col>
                       <div className="title">{"Messages"}</div>
                       <div className="value">{Object.keys(props.data.block.Messages).length === 0 ? '-' : props.data.block.Messages}</div>
-                    </Col>
-                    <Col>
-                      <div className="title">{"ProposerID"}</div>
-                      <div className="value">{props.data.block.ProposerID}</div>
                     </Col>
                   </Row>
                 </div>

@@ -40,16 +40,22 @@ class ListContainer extends React.Component<ListProps, ListState> {
                       </Row>
                       <Row>
                         <Col>
+                          <div className="title">{"BlockHeight"}</div>
+                          <div className="value">{res.BlockHeight}</div>
+                        </Col>
+                        <Col>
+                          <div className="title">{"ProposerID"}</div>
+                          <div className="value">{res.ProposerID}</div>
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col>
                           <div className="title">{"FeeFrac"}</div>
                           <div className="value">{res.FeeFrac}</div>
                         </Col>
                         <Col>
                           <div className="title">{"Messages"}</div>
                           <div className="value">{Object.keys(res.Messages).length === 0 ? '-' : res.Messages}</div>
-                        </Col>
-                        <Col>
-                          <div className="title">{"ProposerID"}</div>
-                          <div className="value">{res.ProposerID}</div>
                         </Col>
                       </Row>
                     </div>
