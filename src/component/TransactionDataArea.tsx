@@ -29,18 +29,18 @@ const component: React.SFC<Props> = (props: Props) => {
                   </Row>
                   <Row>
                     <Col>
-                      <div className="title">{"Address"}</div>
-                      <div className="value">{formatter(props.data.transaction.Message).address}</div>
+                      <div className="title">{"Memo"}</div>
+                      <div className="value">{formatter(props.data.transaction.Message).memo}</div>
                     </Col>
                   </Row>
                   <Row>
                     <Col>
-                      <div className="title">{"BlockchainId"}</div>
-                      <div className="value">{formatter(props.data.transaction.Message).blockChainId}</div>
+                      <div className="title">{"Source"}</div>
+                      <div className="value">{formatter(props.data.transaction.Message).source}</div>
                     </Col>
                     <Col>
-                      <div className="title">{"Username"}</div>
-                      <div className="value">{formatter(props.data.transaction.Message).userName}</div>
+                      <div className="title">{"Destination"}</div>
+                      <div className="value">{formatter(props.data.transaction.Message).destination}</div>
                     </Col>
                   </Row>
                 </div>

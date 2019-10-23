@@ -68,7 +68,7 @@ class ListContainer extends React.Component<ListProps, ListState> {
                 <div key={res.TransactionHash} className="col-sm-12 col-md-12 col-lg-12">
                   <div className="card mb-4">
                     <div className="card-body" >
-                    <Row>
+                      <Row>
                         <Col>
                           <div className="title">{"TransactionHash"}</div>
                           <div className="value">{res.TransactionHash}</div>
@@ -76,18 +76,18 @@ class ListContainer extends React.Component<ListProps, ListState> {
                       </Row>
                       <Row>
                         <Col>
-                          <div className="title">{"Address"}</div>
-                          <div className="value">{formatter(res.Message).address}</div>
+                          <div className="title">{"Memo"}</div>
+                          <div className="value">{formatter(res.Message).memo}</div>
                         </Col>
                       </Row>
                       <Row>
                         <Col>
-                          <div className="title">{"BlockchainId"}</div>
-                          <div className="value">{formatter(res.Message).blockChainId}</div>
+                          <div className="title">{"Source"}</div>
+                          <div className="value">{formatter(res.Message).source}</div>
                         </Col>
                         <Col>
-                          <div className="title">{"Username"}</div>
-                          <div className="value">{formatter(res.Message).userName}</div>
+                          <div className="title">{"Destination"}</div>
+                          <div className="value">{formatter(res.Message).destination}</div>
                         </Col>
                       </Row>
                     </div>

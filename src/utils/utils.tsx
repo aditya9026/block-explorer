@@ -1,9 +1,9 @@
-export const formatter = (data:string) => {
-  let output = {userName: null, blockChainId: null, address: null}, message, details
-  message = JSON.parse(data)
-  details = JSON.parse(message.details)
-  output.userName = details.username
-  output.blockChainId = details.targets && details.targets.length > 0 && details.targets[0].blockchain_id ? details.targets[0].blockchain_id : '-'
-  output.address = details.targets && details.targets.length > 0 && details.targets[0].address ? details.targets[0].address : '-'
+export const formatter = (data: any) => {
+  let output = {userName: null, blockChainId: null, address: null, source: null, destination: null, memo: null}
+  output.source = data.details.source
+  output.destination = data.details.destination
+  output.userName = data.details.username
+  output.memo = data.details.memo
+  output.address = data.details.targets && data.details.targets.length > 0 && data.details.targets[0].address ? data.details.targets[0].address : '-'
   return output
 }
